@@ -1,4 +1,4 @@
-package com.trabalhoFinal.SisTrafegoAereo.Aplicacao;
+package com.trabalhoFinal.SisTrafegoAereo.Dominio.Interfaces;
 
 import com.trabalhoFinal.SisTrafegoAereo.Dominio.Entidades.Ocupacao;
 import com.trabalhoFinal.SisTrafegoAereo.Dominio.Entidades.Viagem;
