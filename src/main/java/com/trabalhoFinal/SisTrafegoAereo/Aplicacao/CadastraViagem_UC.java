@@ -60,7 +60,7 @@ public class CadastraViagem_UC {
             throw new NotAcceptableStatusException("Aeronave desconhecida");
         }
 
-        Aerovia aerovia = this.servicoAerovia.buscaPorNome(cadastraViagemDTO.nomeAerovia());
+        Aerovia aerovia = this.servicoAerovia.busca(cadastraViagemDTO.nomeAerovia(), cadastraViagemDTO.altitude());
 
         if (aerovia == null) {
             throw new NotAcceptableStatusException("Aerovia desconhecida");
