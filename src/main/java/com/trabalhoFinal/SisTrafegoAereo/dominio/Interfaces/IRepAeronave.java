@@ -6,4 +6,6 @@ public interface IRepAeronave {
 
     public Aeronave buscaPorPrefixo(String prefixo);
 
+    public boolean existeAeronave(String prefixo);
+
 }

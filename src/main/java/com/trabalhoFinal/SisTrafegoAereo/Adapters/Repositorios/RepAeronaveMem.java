@@ -26,4 +26,11 @@ public class RepAeronaveMem implements IRepAeronave {
         return aeronaves.stream().filter((aeronave) -> aeronave.getPrefixo().equals(prefixo)).findFirst().orElse(null);
     }
 
+    @Override
+    public boolean existeAeronave(String prefixo) {
+        return aeronaves.stream().filter((aeronave) -> aeronave.getPrefixo().equals(prefixo)).findAny().isPresent();
+    }
+
+
+
 }

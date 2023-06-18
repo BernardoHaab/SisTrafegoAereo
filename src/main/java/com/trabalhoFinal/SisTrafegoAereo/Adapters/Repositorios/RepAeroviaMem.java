@@ -39,4 +39,10 @@ public class RepAeroviaMem implements IRepAerovia {
                 .orElse(null);
     }
 
+    @Override
+    public boolean existeAerovia(String nome, int altitude) {
+        return this.aerovias.stream()
+                .filter((aerovia) -> aerovia.getNome().equals(nome) && aerovia.getAltitude() == altitude).findAny().isPresent();
+    }
+
 }

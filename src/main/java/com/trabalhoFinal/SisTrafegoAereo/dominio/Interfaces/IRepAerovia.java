@@ -6,4 +6,6 @@ public interface IRepAerovia {
 
     public Aerovia busca(String nome, int altitude);
 
+    public boolean existeAerovia(String nome, int altitude);
+
 }

@@ -3,7 +3,7 @@ package com.trabalhoFinal.SisTrafegoAereo.Aplicacao;
 import java.util.Date;
 import java.util.List;
 
-public record CadastraViagemDTO(
+public record ViagemDTO(
         Long id,
         String prefixoAeronave,
         String nomeAerovia,

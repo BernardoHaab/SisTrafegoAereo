@@ -23,4 +23,9 @@ public class ServicoAeronave {
 
         return aeronave;
     }
+
+    public boolean existeAeronave(String prefixo) {
+        return this.repAeronave.existeAeronave(prefixo);
+    }
+
 }

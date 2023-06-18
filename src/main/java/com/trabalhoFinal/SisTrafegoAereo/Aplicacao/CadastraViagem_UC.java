@@ -29,13 +29,13 @@ public class CadastraViagem_UC {
         this.servicoAeronave = servicoAeronave;
     }
 
-    public Viagem run(CadastraViagemDTO cadastraViagemDTO) throws RuntimeException {
+    public Viagem run(ViagemDTO cadastraViagemDTO) throws RuntimeException {
         Ocupacao ocupacao = criaOcupacao(cadastraViagemDTO);
 
         return this.servicoViagem.cadastraViagem(cadastraViagemDTO.id(), cadastraViagemDTO.nomePiloto(), ocupacao);
     }
 
-    private Ocupacao criaOcupacao(CadastraViagemDTO cadastraViagemDTO) throws RuntimeException {
+    private Ocupacao criaOcupacao(ViagemDTO cadastraViagemDTO) throws RuntimeException {
         List<Integer> sortedSlots = cadastraViagemDTO.slots().stream().sorted().toList();
         Integer slotHoraInicio = sortedSlots.get(0);
         Integer slotHoraFim = sortedSlots.get(sortedSlots.size()-1);

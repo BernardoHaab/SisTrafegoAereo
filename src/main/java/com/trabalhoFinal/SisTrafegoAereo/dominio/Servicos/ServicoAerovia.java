@@ -26,4 +26,9 @@ public class ServicoAerovia {
         return aerovia;
     }
 
+
+    public boolean existeAerovia(String nome, int altitude) {
+        return this.repAerovia.existeAerovia(nome, altitude);
+    }
+
 }

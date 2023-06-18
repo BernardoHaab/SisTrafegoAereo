@@ -9,7 +9,6 @@ import com.trabalhoFinal.SisTrafegoAereo.Dominio.Entidades.Aeronave;
 import com.trabalhoFinal.SisTrafegoAereo.Dominio.Entidades.Aerovia;
 import com.trabalhoFinal.SisTrafegoAereo.Dominio.Entidades.Ocupacao;
 import com.trabalhoFinal.SisTrafegoAereo.Dominio.Interfaces.IRepOcupacao;
-import com.trabalhoFinal.SisTrafegoAereo.Utils.Validation.ValidaSlots;
 
 @Service
 public class ServicoOcupacao {
@@ -20,7 +19,7 @@ public class ServicoOcupacao {
     }
 
     public Ocupacao cadastraOcupacao(Date data, Integer slotHoraInicio, Integer slotHoraFim, Aerovia aerovia, Aeronave aeronave) {
-        if (!ValidaSlots.valida(slotHoraInicio, slotHoraFim)) {
+        if (!isSlotOcupacaoValido(slotHoraInicio, slotHoraFim)) {
             throw new NotAcceptableStatusException("Slot de hora deve estar no intervalo 0-23");
         };
 
@@ -41,5 +40,9 @@ public class ServicoOcupacao {
 
     public boolean isAeronaveOcupada(String prefixAeronave, Date data, Integer slotHoraInicio, Integer slotHoraFim) {
         return this.repOcupacao.isAeronaveOcupada(prefixAeronave, data, slotHoraInicio, slotHoraFim);
+    }
+
+    public boolean isSlotOcupacaoValido(Integer slotHoraInicio, Integer slotHoraFim) {
+        return  slotHoraInicio <= slotHoraFim && (slotHoraInicio >= 0 && slotHoraFim <= 23);
     }
 }
