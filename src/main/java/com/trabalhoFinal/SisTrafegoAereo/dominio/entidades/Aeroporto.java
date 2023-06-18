@@ -1,11 +1,9 @@
-package com.trabalhoFinal.SisTrafegoAereo.dominio.entidades;
+package com.trabalhoFinal.SisTrafegoAereo.Dominio.Entidades;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
-@Entity
 public class Aeroporto {
-    @Id
     private String codigoIata;
 
     private String cidade;

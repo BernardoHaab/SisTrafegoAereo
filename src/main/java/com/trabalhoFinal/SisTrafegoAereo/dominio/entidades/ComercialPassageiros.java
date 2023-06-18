@@ -1,14 +1,11 @@
-package com.trabalhoFinal.SisTrafegoAereo.dominio.entidades;
+package com.trabalhoFinal.SisTrafegoAereo.Dominio.Entidades;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-@Entity
 public class ComercialPassageiros extends Comercial {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int maxPassageiros;
 

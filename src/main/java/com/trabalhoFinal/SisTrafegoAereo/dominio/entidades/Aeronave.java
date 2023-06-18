@@ -1,19 +1,12 @@
-package com.trabalhoFinal.SisTrafegoAereo.dominio.entidades;
+package com.trabalhoFinal.SisTrafegoAereo.Dominio.Entidades;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-
-@Entity
 public abstract class Aeronave {
 
-    @Id
-    @Column(length = 3)
 	protected String prefixo;
-	protected double velocidade;
-	protected double autonomia;
+	protected Double velocidade;
+	protected Double autonomia;
 
-    public Aeronave(String prefixo, double velocidade, double autonomia) {
+    public Aeronave(String prefixo, Double velocidade, Double autonomia) {
         this.prefixo = prefixo;
         this.velocidade = velocidade;
         this.autonomia = autonomia;
@@ -25,16 +18,16 @@ public abstract class Aeronave {
     public void setPrefixo(String prefixo) {
         this.prefixo = prefixo;
     }
-    public double getVelocidade() {
+    public Double getVelocidade() {
         return velocidade;
     }
-    public void setVelocidade(double velocidade) {
+    public void setVelocidade(Double velocidade) {
         this.velocidade = velocidade;
     }
-    public double getAutonomia() {
+    public Double getAutonomia() {
         return autonomia;
     }
-    public void setAutonomia(double autonomia) {
+    public void setAutonomia(Double autonomia) {
         this.autonomia = autonomia;
     }
 

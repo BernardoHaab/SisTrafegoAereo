@@ -1,4 +1,4 @@
-package com.trabalhoFinal.SisTrafegoAereo.dominio.entidades;
+package com.trabalhoFinal.SisTrafegoAereo.Dominio.Entidades;
 
 public abstract class Comercial extends Aeronave {
     protected String nomeCompanhia;
