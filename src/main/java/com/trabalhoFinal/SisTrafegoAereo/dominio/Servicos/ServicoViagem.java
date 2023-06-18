@@ -17,7 +17,6 @@ public class ServicoViagem {
         this.repViagem = repViagem;
     }
 
-    // @ToDo: Deixar a verificação de ocupações no service ou no caso de uso?
     public Viagem cadastraViagem(Long id, String piloto, Ocupacao ocupacao) {
         return this.repViagem.cadastraViagem(id, piloto, ocupacao);
     }

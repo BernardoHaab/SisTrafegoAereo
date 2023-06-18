@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import com.trabalhoFinal.SisTrafegoAereo.Dominio.Entidades.Aeronave;
 import com.trabalhoFinal.SisTrafegoAereo.Dominio.Interfaces.IRepAeronave;
+import com.trabalhoFinal.SisTrafegoAereo.Utils.Errors.NaoEncontrado;
 
 @Service
 public class ServicoAeronave {
@@ -13,7 +14,13 @@ public class ServicoAeronave {
         this.repAeronave = repAeronave;
     }
 
-    public Aeronave buscaPorPrefixo(String prefixo) {
-        return this.repAeronave.buscaPorPrefixo(prefixo);
+    public Aeronave buscaPorPrefixo(String prefixo) throws NaoEncontrado {
+        Aeronave aeronave = this.repAeronave.buscaPorPrefixo(prefixo);
+
+        if (aeronave == null) {
+            throw new NaoEncontrado("Aeronave desconhecida");
+        }
+
+        return aeronave;
     }
 }

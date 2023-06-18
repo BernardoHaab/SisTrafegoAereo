@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.trabalhoFinal.SisTrafegoAereo.Aplicacao.OcupacaoDTO;
 import com.trabalhoFinal.SisTrafegoAereo.Dominio.Entidades.Aeronave;
 import com.trabalhoFinal.SisTrafegoAereo.Dominio.Entidades.Aerovia;
 import com.trabalhoFinal.SisTrafegoAereo.Dominio.Entidades.Ocupacao;
@@ -28,34 +27,24 @@ public class RepOcupacaoMem implements IRepOcupacao {
     }
 
     @Override
-    public boolean isAeronaveOcupada(String prefixAeronave, OcupacaoDTO horarios) {
+    public boolean isAeronaveOcupada(String prefixAeronave, Date data, Integer slotHoraInicio, Integer slotHoraFim) {
         SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMdd");
-
-
-        List<Integer> sortedSlots =  horarios.slots().stream().sorted().toList();
-        Integer slotHoraInicio = sortedSlots.get(0);
-        Integer slotHoraFim = sortedSlots.get(sortedSlots.size()-1);
 
         return this.ocupacoes.stream()
         .filter((oc) -> oc.getAeronave().getPrefixo().equals(prefixAeronave))
-        .filter((oc) -> fmt.format(oc.getData()).equals(fmt.format(horarios.data())))
+        .filter((oc) -> fmt.format(oc.getData()).equals(fmt.format(data)))
         .filter((oc) -> slotHoraInicio >= oc.getSlotHoraInicio() && slotHoraInicio <= oc.getSlotHoraFim() || slotHoraFim >= oc.getSlotHoraInicio() && slotHoraFim <= oc.getSlotHoraFim())
         .findAny()
         .isPresent();
     }
 
     @Override
-    public boolean isAeroviaOcupada(String nomeAerovia, OcupacaoDTO horarios) {
+    public boolean isAeroviaOcupada(String nomeAerovia, Date data, Integer slotHoraInicio, Integer slotHoraFim) {
         SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMdd");
-
-
-        List<Integer> sortedSlots =  horarios.slots().stream().sorted().toList();
-        Integer slotHoraInicio = sortedSlots.get(0);
-        Integer slotHoraFim = sortedSlots.get(sortedSlots.size()-1);
 
         return this.ocupacoes.stream()
         .filter((oc) -> oc.getAerovia().getNome().equals(nomeAerovia))
-        .filter((oc) -> fmt.format(oc.getData()).equals(fmt.format(horarios.data())))
+        .filter((oc) -> fmt.format(oc.getData()).equals(fmt.format(data)))
         .filter((oc) -> slotHoraInicio >= oc.getSlotHoraInicio() && slotHoraInicio <= oc.getSlotHoraFim() || slotHoraFim >= oc.getSlotHoraInicio() && slotHoraFim <= oc.getSlotHoraFim())
         .findAny()
         .isPresent();

@@ -3,12 +3,13 @@ package com.trabalhoFinal.SisTrafegoAereo.Dominio.Servicos;
 import java.util.Date;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.NotAcceptableStatusException;
 
-import com.trabalhoFinal.SisTrafegoAereo.Aplicacao.OcupacaoDTO;
 import com.trabalhoFinal.SisTrafegoAereo.Dominio.Entidades.Aeronave;
 import com.trabalhoFinal.SisTrafegoAereo.Dominio.Entidades.Aerovia;
 import com.trabalhoFinal.SisTrafegoAereo.Dominio.Entidades.Ocupacao;
 import com.trabalhoFinal.SisTrafegoAereo.Dominio.Interfaces.IRepOcupacao;
+import com.trabalhoFinal.SisTrafegoAereo.Utils.Validation.ValidaSlots;
 
 @Service
 public class ServicoOcupacao {
@@ -18,18 +19,27 @@ public class ServicoOcupacao {
         this.repOcupacao = repOcupacao;
     }
 
-    // @ToDo: Implementar/Persistir cadastro de ocupação
     public Ocupacao cadastraOcupacao(Date data, Integer slotHoraInicio, Integer slotHoraFim, Aerovia aerovia, Aeronave aeronave) {
+        if (!ValidaSlots.valida(slotHoraInicio, slotHoraFim)) {
+            throw new NotAcceptableStatusException("Slot de hora deve estar no intervalo 0-23");
+        };
+
+        if (this.isAeroviaOcupada(aerovia.getNome(), data, slotHoraInicio, slotHoraFim)) {
+            throw new NotAcceptableStatusException("Aerovia Ocupada");
+        }
+
+        if (this.isAeronaveOcupada(aeronave.getPrefixo(), data, slotHoraInicio, slotHoraFim)) {
+            throw new NotAcceptableStatusException("Aeronave ocupada");
+        }
+
         return this.repOcupacao.cadastraOcupacao(data, slotHoraInicio, slotHoraFim, aerovia, aeronave);
     }
 
-    // @ToDo: Implementar verificação se Aerovia esta ocupada
-    public boolean isAeroviaOcupada(String nomeAerovia, OcupacaoDTO horarios) {
-        return this.repOcupacao.isAeroviaOcupada(nomeAerovia, horarios);
+    public boolean isAeroviaOcupada(String nomeAerovia, Date data, Integer slotHoraInicio, Integer slotHoraFim) {
+        return this.repOcupacao.isAeroviaOcupada(nomeAerovia, data, slotHoraInicio, slotHoraFim);
     }
 
-    // @ToDo: Implementar verificação se Aeronave esta ocupada
-    public boolean isAeronaveOcupada(String prefixAeronave, OcupacaoDTO horarios) {
-        return this.repOcupacao.isAeronaveOcupada(prefixAeronave, horarios);
+    public boolean isAeronaveOcupada(String prefixAeronave, Date data, Integer slotHoraInicio, Integer slotHoraFim) {
+        return this.repOcupacao.isAeronaveOcupada(prefixAeronave, data, slotHoraInicio, slotHoraFim);
     }
 }
