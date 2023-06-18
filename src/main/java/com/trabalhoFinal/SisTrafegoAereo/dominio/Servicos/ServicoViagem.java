@@ -9,20 +9,15 @@ import com.trabalhoFinal.SisTrafegoAereo.Dominio.Interfaces.IRepViagem;
 
 @Service
 public class ServicoViagem {
-    private ServicoOcupacao servicoOcupacao;
-    private ServicoAeronave servicoAeronave;
-    private ServicoAerovia servicoAerovia;
 
     private IRepViagem repViagem;
 
     @Autowired
-    public ServicoViagem(ServicoOcupacao servicoOcupacao, ServicoAeronave servicoAeronave, ServicoAerovia servicoAerovia, IRepViagem repViagem) {
-        this.servicoOcupacao = servicoOcupacao;
-        this.servicoAeronave = servicoAeronave;
-        this.servicoAerovia = servicoAerovia;
+    public ServicoViagem(IRepViagem repViagem) {
         this.repViagem = repViagem;
     }
 
+    // @ToDo: Deixar a verificação de ocupações no service ou no caso de uso?
     public Viagem cadastraViagem(Long id, String piloto, Ocupacao ocupacao) {
         return this.repViagem.cadastraViagem(id, piloto, ocupacao);
     }
