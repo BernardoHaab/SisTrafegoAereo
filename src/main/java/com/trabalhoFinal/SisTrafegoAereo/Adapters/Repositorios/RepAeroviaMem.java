@@ -3,6 +3,7 @@ package com.trabalhoFinal.SisTrafegoAereo.Adapters.Repositorios;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.trabalhoFinal.SisTrafegoAereo.Dominio.Entidades.Aeroporto;
@@ -13,13 +14,15 @@ import com.trabalhoFinal.SisTrafegoAereo.Dominio.Interfaces.IRepAerovia;
 public class RepAeroviaMem implements IRepAerovia {
     List<Aerovia> aerovias = new LinkedList<>();
 
-    public RepAeroviaMem() {
-        Aeroporto poa = new Aeroporto("Porto Aelegre", "POA");
-        Aeroporto flo = new Aeroporto("Florianópolis", "FLO");
-        Aeroporto cwb = new Aeroporto("Curitiba", "CWB");
-        Aeroporto gru = new Aeroporto("São Paulo", "GRU");
+    @Autowired
+    public RepAeroviaMem(RepAeroportoMem repAeroportoMem) {
+        Aeroporto poa = repAeroportoMem.getAeroporto("POA");
+        Aeroporto flo = repAeroportoMem.getAeroporto("FLO");
+        Aeroporto cwb = repAeroportoMem.getAeroporto("CWB");
+        Aeroporto gru = repAeroportoMem.getAeroporto("GRU");
 
         aerovias.add(new Aerovia(poa, flo, 450, "POA-FLO", 30000));
+        aerovias.add(new Aerovia(poa, flo, 450, "POA-FLO", 290000));
         aerovias.add(new Aerovia(flo, poa, 450, "FLO-POA", 30000));
 
         aerovias.add(new Aerovia(poa, gru, 1100, "POA-GRU", 28000));
@@ -43,6 +46,14 @@ public class RepAeroviaMem implements IRepAerovia {
     public boolean existeAerovia(String nome, int altitude) {
         return this.aerovias.stream()
                 .filter((aerovia) -> aerovia.getNome().equals(nome) && aerovia.getAltitude() == altitude).findAny().isPresent();
+    }
+
+    @Override
+    public List<Aerovia> listaAerovias(Aeroporto origem, Aeroporto destino) {
+        return this.aerovias.stream()
+        .filter((aerovia) -> aerovia.getOrigem().equals(origem))
+        .filter((aerovia) -> aerovia.getDestino().equals(destino))
+        .toList();
     }
 
 }
