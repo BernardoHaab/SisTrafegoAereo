@@ -45,4 +45,9 @@ public class ServicoOcupacao {
     public boolean isSlotOcupacaoValido(Integer slotHoraInicio, Integer slotHoraFim) {
         return  slotHoraInicio <= slotHoraFim && (slotHoraInicio >= 0 && slotHoraFim <= 23);
     }
+
+    public boolean liberaOcupacao(Ocupacao ocupacao) {
+        return this.repOcupacao.liberaOcupacao(ocupacao);
+    }
+
 }

@@ -14,4 +14,6 @@ public interface IRepOcupacao {
 
     public boolean isAeroviaOcupada(String nomeAerovia, Date data, Integer slotHoraInicio, Integer slotHoraFim);
 
+    public boolean liberaOcupacao(Ocupacao ocupacao);
+
 }

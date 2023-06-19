@@ -50,4 +50,9 @@ public class RepOcupacaoMem implements IRepOcupacao {
         .isPresent();
     }
 
+    @Override
+    public boolean liberaOcupacao(Ocupacao ocupacao) {
+        return this.ocupacoes.removeIf((oc) -> oc.equals(ocupacao));
+    }
+
 }

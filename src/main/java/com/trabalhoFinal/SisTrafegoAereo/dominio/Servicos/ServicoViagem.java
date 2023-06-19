@@ -21,4 +21,12 @@ public class ServicoViagem {
         return this.repViagem.cadastraViagem(id, piloto, ocupacao);
     }
 
+    public boolean removeViagem(Long id) {
+        return this.repViagem.removeViagem(id);
+    }
+
+    public Viagem getViagem(Long id) {
+        return this.repViagem.getViagem(id);
+    }
+
 }

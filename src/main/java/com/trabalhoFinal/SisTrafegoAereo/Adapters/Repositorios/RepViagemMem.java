@@ -16,9 +16,22 @@ public class RepViagemMem implements IRepViagem {
     @Override
     public Viagem cadastraViagem(Long idViagem, String nomePiloto, Ocupacao ocupacao) {
         Viagem viagemNova = new Viagem(idViagem, nomePiloto, ocupacao);
+
+        System.out.println("viagemNova");
+        System.out.println(viagemNova);
         viagens.add(viagemNova);
 
         return viagemNova;
+    }
+
+    @Override
+    public boolean removeViagem(Long idViagem) {
+        return viagens.removeIf((viagem) -> viagem.getIdViagem().equals(idViagem));
+    }
+
+    @Override
+    public Viagem getViagem(Long idViagem) {
+        return viagens.stream().filter((viagem) -> viagem.getIdViagem().equals(idViagem)).findFirst().orElse(null);
     }
 
 }
