@@ -1,5 +1,6 @@
 package com.trabalhoFinal.SisTrafegoAereo.Dominio.Servicos;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,10 @@ public class ServicoAerovia {
 
     public List<Aerovia> listaAerovias(Aeroporto origem, Aeroporto destino) {
         return this.repAerovia.listaAerovias(origem, destino);
+    }
+
+    public List<Integer> getAltitudesLivres(String nomeAerovia, Date data, Integer slotHora) {
+        return this.repAerovia.getAltitudesLivres(nomeAerovia, data, slotHora);
     }
 
 }

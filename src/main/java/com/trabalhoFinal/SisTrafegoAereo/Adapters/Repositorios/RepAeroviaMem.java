@@ -1,5 +1,6 @@
 package com.trabalhoFinal.SisTrafegoAereo.Adapters.Repositorios;
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,9 +14,12 @@ import com.trabalhoFinal.SisTrafegoAereo.Dominio.Interfaces.IRepAerovia;
 @Repository
 public class RepAeroviaMem implements IRepAerovia {
     List<Aerovia> aerovias = new LinkedList<>();
+    RepOcupacaoMem repOcupacaoMem;
 
     @Autowired
-    public RepAeroviaMem(RepAeroportoMem repAeroportoMem) {
+    public RepAeroviaMem(RepAeroportoMem repAeroportoMem, RepOcupacaoMem repOcupacaoMem) {
+        this.repOcupacaoMem = repOcupacaoMem;
+
         Aeroporto poa = repAeroportoMem.getAeroporto("POA");
         Aeroporto flo = repAeroportoMem.getAeroporto("FLO");
         Aeroporto cwb = repAeroportoMem.getAeroporto("CWB");
@@ -54,6 +58,23 @@ public class RepAeroviaMem implements IRepAerovia {
         .filter((aerovia) -> aerovia.getOrigem().equals(origem))
         .filter((aerovia) -> aerovia.getDestino().equals(destino))
         .toList();
+    }
+
+    @Override
+    public List<Integer> getAltitudesLivres(String nomeAerovia, Date data, Integer slotHora) {
+        List<Integer> todasAltitudes = aerovias.stream()
+            .filter((aerovia) -> aerovia.getNome().equals(nomeAerovia))
+            .map((aerovia) -> aerovia.getAltitude())
+            .toList();
+
+        List<Integer> ocupadas = this.repOcupacaoMem.getAltitudesOcupadas(nomeAerovia, data, slotHora);
+
+        System.out.println("todasAltitudes");
+        System.out.println(todasAltitudes);
+        System.out.println("ocupadas");
+        System.out.println(ocupadas);
+
+        return todasAltitudes.stream().filter((al) -> !ocupadas.contains(al)).toList();
     }
 
 }

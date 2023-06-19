@@ -55,4 +55,15 @@ public class RepOcupacaoMem implements IRepOcupacao {
         return this.ocupacoes.removeIf((oc) -> oc.equals(ocupacao));
     }
 
+    public List<Integer> getAltitudesOcupadas(String nomeAerovia, Date data, Integer slotHora) {
+        SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMdd");
+
+        return this.ocupacoes.stream()
+            .filter((oc) -> oc.getAerovia().getNome().equals(nomeAerovia))
+            .filter((oc) -> fmt.format(oc.getData()).equals(fmt.format(data)))
+            .filter((oc) -> slotHora >= oc.getSlotHoraInicio() && slotHora <= oc.getSlotHoraFim())
+            .map((oc) -> oc.getAerovia().getAltitude())
+            .toList();
+    }
+
 }
