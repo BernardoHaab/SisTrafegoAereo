@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.web.server.NotAcceptableStatusException;
 
 import com.trabalhoFinal.SisTrafegoAereo.Dominio.Entidades.Ocupacao;
 import com.trabalhoFinal.SisTrafegoAereo.Dominio.Entidades.Viagem;
@@ -14,7 +15,11 @@ public class RepViagemMem implements IRepViagem {
     private List<Viagem> viagens = new LinkedList<>();
 
     @Override
-    public Viagem cadastraViagem(Long idViagem, String nomePiloto, Ocupacao ocupacao) {
+    public Viagem cadastraViagem(Long idViagem, String nomePiloto, Ocupacao ocupacao) throws RuntimeException {
+        if (existeViagem(idViagem)) {
+            throw new NotAcceptableStatusException("Id já usado em outra viagem");
+        }
+
         Viagem viagemNova = new Viagem(idViagem, nomePiloto, ocupacao);
 
         System.out.println("viagemNova");
@@ -27,6 +32,11 @@ public class RepViagemMem implements IRepViagem {
     @Override
     public boolean removeViagem(Long idViagem) {
         return viagens.removeIf((viagem) -> viagem.getIdViagem().equals(idViagem));
+    }
+
+    @Override
+    public boolean existeViagem(Long idViagem) {
+        return viagens.stream().filter((viagem) -> viagem.getIdViagem().equals(idViagem)).findAny().isPresent();
     }
 
     @Override

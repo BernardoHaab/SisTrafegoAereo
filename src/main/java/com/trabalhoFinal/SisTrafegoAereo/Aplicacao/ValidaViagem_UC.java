@@ -8,17 +8,20 @@ import org.springframework.stereotype.Component;
 import com.trabalhoFinal.SisTrafegoAereo.Dominio.Servicos.ServicoAeronave;
 import com.trabalhoFinal.SisTrafegoAereo.Dominio.Servicos.ServicoAerovia;
 import com.trabalhoFinal.SisTrafegoAereo.Dominio.Servicos.ServicoOcupacao;
+import com.trabalhoFinal.SisTrafegoAereo.Dominio.Servicos.ServicoViagem;
 
 @Component
 public class ValidaViagem_UC {
     private ServicoOcupacao servicoOcupacao;
     private ServicoAeronave servicoAeronave;
     private ServicoAerovia servicoAerovia;
+    private ServicoViagem servicoViagem;
 
-    public ValidaViagem_UC(ServicoOcupacao servicoOcupacao, ServicoAeronave servicoAeronave, ServicoAerovia servicoAerovia) {
+    public ValidaViagem_UC(ServicoOcupacao servicoOcupacao, ServicoAeronave servicoAeronave, ServicoAerovia servicoAerovia, ServicoViagem servicoViagem) {
         this.servicoOcupacao = servicoOcupacao;
         this.servicoAeronave = servicoAeronave;
         this.servicoAerovia = servicoAerovia;
+        this.servicoViagem = servicoViagem;
     }
 
     public List<String> run(ViagemDTO viagemDTO) {
@@ -28,9 +31,12 @@ public class ValidaViagem_UC {
         Integer slotHoraInicio = sortedSlots.get(0);
         Integer slotHoraFim = sortedSlots.get(sortedSlots.size()-1);
 
+        if (this.servicoViagem.existeViagemId(viagemDTO.id())) {
+            res.add("Id já usado em outra viagem.");
+        }
+
         if (!this.servicoOcupacao.isSlotOcupacaoValido(slotHoraInicio, slotHoraFim)) {
             res.add("Slots de hora inválidos.");
-            return res;
         }
 
         if (!servicoAeronave.existeAeronave(viagemDTO.prefixoAeronave())) {

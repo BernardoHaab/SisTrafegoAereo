@@ -29,4 +29,8 @@ public class ServicoViagem {
         return this.repViagem.getViagem(id);
     }
 
+    public boolean existeViagemId(Long id) {
+        return this.repViagem.existeViagem(id);
+    }
+
 }

@@ -31,8 +31,12 @@ public class CadastraViagem_UC {
 
     public Viagem run(ViagemDTO cadastraViagemDTO) throws RuntimeException {
         Ocupacao ocupacao = criaOcupacao(cadastraViagemDTO);
-
-        return this.servicoViagem.cadastraViagem(cadastraViagemDTO.id(), cadastraViagemDTO.nomePiloto(), ocupacao);
+        try {
+            return this.servicoViagem.cadastraViagem(cadastraViagemDTO.id(), cadastraViagemDTO.nomePiloto(), ocupacao);
+        } catch (RuntimeException e) {
+            this.servicoOcupacao.liberaOcupacao(ocupacao);
+            throw e;
+        }
     }
 
     private Ocupacao criaOcupacao(ViagemDTO cadastraViagemDTO) throws RuntimeException {

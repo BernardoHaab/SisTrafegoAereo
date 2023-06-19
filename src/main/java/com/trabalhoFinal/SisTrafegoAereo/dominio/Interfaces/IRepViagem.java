@@ -9,6 +9,8 @@ public interface IRepViagem {
 
     public boolean removeViagem(Long idViagem);
 
+    public boolean existeViagem(Long idViagem);
+
     public Viagem getViagem(Long idViagem);
 
 }
