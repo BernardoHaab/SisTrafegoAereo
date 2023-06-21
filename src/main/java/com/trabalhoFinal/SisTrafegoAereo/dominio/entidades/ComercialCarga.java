@@ -1,5 +1,10 @@
 package com.trabalhoFinal.SisTrafegoAereo.Dominio.Entidades;
 
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("CC")
 public class ComercialCarga extends Comercial {
     private int id;
     private double cargaMax;

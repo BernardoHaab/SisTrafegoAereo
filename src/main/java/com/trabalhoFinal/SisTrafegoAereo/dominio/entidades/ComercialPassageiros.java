@@ -1,10 +1,10 @@
 package com.trabalhoFinal.SisTrafegoAereo.Dominio.Entidades;
 
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 
+@Entity
+@DiscriminatorValue("CP")
 public class ComercialPassageiros extends Comercial {
     private int id;
     private int maxPassageiros;

@@ -2,14 +2,37 @@ package com.trabalhoFinal.SisTrafegoAereo.Dominio.Entidades;
 
 import java.util.Date;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+
+@Entity
 public class Ocupacao {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private Date data;
     private Integer slotHoraInicio;
     private Integer slotHoraFim;
+    @ManyToOne
     private Aerovia aerovia;
+    @ManyToOne
     private Aeronave aeronave;
 
     public Ocupacao(Date data, Integer slotHoraInicio, Integer slotHoraFim, Aerovia aerovia, Aeronave aeronave) {
+        this.data = data;
+        this.slotHoraInicio = slotHoraInicio;
+        this.slotHoraFim = slotHoraFim;
+        this.aerovia = aerovia;
+        this.aeronave = aeronave;
+    }
+
+    public Ocupacao(Long id, Date data, Integer slotHoraInicio, Integer slotHoraFim, Aerovia aerovia,
+            Aeronave aeronave) {
+        this.id = id;
         this.data = data;
         this.slotHoraInicio = slotHoraInicio;
         this.slotHoraFim = slotHoraFim;
@@ -57,10 +80,18 @@ public class Ocupacao {
         this.aeronave = aeronave;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
-        return "Ocupacao [data=" + data + ", slotHoraInicio=" + slotHoraInicio + ", slotHoraFim=" + slotHoraFim
-                + ", aerovia=" + aerovia + ", aeronave=" + aeronave + "]";
+        return "Ocupacao [id=" + id + ", data=" + data + ", slotHoraInicio=" + slotHoraInicio + ", slotHoraFim="
+                + slotHoraFim + ", aerovia=" + aerovia + ", aeronave=" + aeronave + "]";
     }
 
 }

@@ -1,5 +1,10 @@
 package com.trabalhoFinal.SisTrafegoAereo.Dominio.Entidades;
 
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("P")
 public class PequenoPorte extends Aeronave {
     private String nomeManutencao;
 

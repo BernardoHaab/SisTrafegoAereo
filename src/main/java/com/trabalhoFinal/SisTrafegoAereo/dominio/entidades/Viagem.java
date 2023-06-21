@@ -1,8 +1,19 @@
 package com.trabalhoFinal.SisTrafegoAereo.Dominio.Entidades;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+
+@Entity
 public class Viagem {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idViagem;
     private String nomeMotorista;
+    @ManyToOne
     private Ocupacao ocupacao;
 
     public Viagem(Long idViagem, String nomeMotorista, Ocupacao ocupacao) {

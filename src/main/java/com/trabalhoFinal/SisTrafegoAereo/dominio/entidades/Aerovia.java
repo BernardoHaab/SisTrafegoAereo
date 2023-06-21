@@ -1,15 +1,37 @@
 package com.trabalhoFinal.SisTrafegoAereo.Dominio.Entidades;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+
+@Entity
 public class Aerovia {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @ManyToOne
     private Aeroporto origem;
+
+    @ManyToOne
 	private Aeroporto destino;
 	private float distancia;
 	private String nome;
 	private int altitude;
 
     public Aerovia(Aeroporto origem, Aeroporto destino, float distancia, String nome, int altitude) {
+        this.origem = origem;
+        this.destino = destino;
+        this.distancia = distancia;
+        this.nome = nome;
+        this.altitude = altitude;
+    }
+
+    public Aerovia(long id, Aeroporto origem, Aeroporto destino, float distancia, String nome, int altitude) {
+        this.id = id;
         this.origem = origem;
         this.destino = destino;
         this.distancia = distancia;
