@@ -11,7 +11,7 @@ public class Aerovia {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @ManyToOne
     private Aeroporto origem;
@@ -30,7 +30,7 @@ public class Aerovia {
         this.altitude = altitude;
     }
 
-    public Aerovia(long id, Aeroporto origem, Aeroporto destino, float distancia, String nome, int altitude) {
+    public Aerovia(Long id, Aeroporto origem, Aeroporto destino, float distancia, String nome, int altitude) {
         this.id = id;
         this.origem = origem;
         this.destino = destino;
