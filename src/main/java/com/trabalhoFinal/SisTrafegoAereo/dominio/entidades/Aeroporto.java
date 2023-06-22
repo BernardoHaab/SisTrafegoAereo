@@ -9,6 +9,10 @@ public class Aeroporto {
     private String codigoIata;
     private String cidade;
 
+    public Aeroporto() {
+
+    }
+
     public Aeroporto(String cidade, String codigoIata) {
         this.cidade = cidade;
         this.codigoIata = codigoIata;

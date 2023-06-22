@@ -22,8 +22,6 @@ public class RepViagemMem implements IRepViagem {
 
         Viagem viagemNova = new Viagem(idViagem, nomePiloto, ocupacao);
 
-        System.out.println("viagemNova");
-        System.out.println(viagemNova);
         viagens.add(viagemNova);
 
         return viagemNova;

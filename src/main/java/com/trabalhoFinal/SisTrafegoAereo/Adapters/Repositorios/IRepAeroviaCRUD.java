@@ -8,5 +8,7 @@ import com.trabalhoFinal.SisTrafegoAereo.Dominio.Entidades.Aeroporto;
 import com.trabalhoFinal.SisTrafegoAereo.Dominio.Entidades.Aerovia;
 
 public interface IRepAeroviaCRUD extends CrudRepository<Aerovia, Long> {
-    List<Aerovia> findByOrigemDestino(Aeroporto origem, Aeroporto destino);
+    Aerovia listByNomeAndAltitude(String nome, int altitude);
+    // List<Aerovia> listByNomeAndAltitude(String nome, int altitude);
+    List<Aerovia> findByOrigemAndDestino(Aeroporto origem, Aeroporto destino);
 }

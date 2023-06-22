@@ -69,11 +69,6 @@ public class RepAeroviaMem implements IRepAerovia {
 
         List<Integer> ocupadas = this.repOcupacaoMem.getAltitudesOcupadas(nomeAerovia, data, slotHora);
 
-        System.out.println("todasAltitudes");
-        System.out.println(todasAltitudes);
-        System.out.println("ocupadas");
-        System.out.println(ocupadas);
-
         return todasAltitudes.stream().filter((al) -> !ocupadas.contains(al)).toList();
     }
 

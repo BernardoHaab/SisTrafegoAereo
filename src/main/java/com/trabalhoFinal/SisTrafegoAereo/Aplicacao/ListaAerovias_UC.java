@@ -23,6 +23,8 @@ public class ListaAerovias_UC {
         Aeroporto origem = this.servicoAeroporto.getAeroporto(codIataOrigem);
         Aeroporto destino = this.servicoAeroporto.getAeroporto(codIataDestino);
 
+        System.out.println(origem);
+
         return this.servicoAerovia.listaAerovias(origem, destino);
     }
 

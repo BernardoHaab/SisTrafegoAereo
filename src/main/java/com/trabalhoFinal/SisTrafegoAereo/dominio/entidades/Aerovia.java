@@ -22,6 +22,10 @@ public class Aerovia {
 	private String nome;
 	private int altitude;
 
+    public Aerovia() {
+
+    }
+
     public Aerovia(Aeroporto origem, Aeroporto destino, float distancia, String nome, int altitude) {
         this.origem = origem;
         this.destino = destino;
