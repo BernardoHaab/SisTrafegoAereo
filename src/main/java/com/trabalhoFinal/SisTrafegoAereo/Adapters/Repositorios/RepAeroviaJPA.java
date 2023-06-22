@@ -23,12 +23,12 @@ public class RepAeroviaJPA implements IRepAerovia {
 
     @Override
     public Aerovia busca(String nome, int altitude) {
-        return this.aeroviaCRUD.listByNomeAndAltitude(nome, altitude);
+        return this.aeroviaCRUD.findByNomeAndAltitude(nome, altitude);
     }
 
     @Override
     public boolean existeAerovia(String nome, int altitude) {
-        return this.aeroviaCRUD.listByNomeAndAltitude(nome, altitude) != null;
+        return this.aeroviaCRUD.findByNomeAndAltitude(nome, altitude) != null;
     }
 
     @Override
