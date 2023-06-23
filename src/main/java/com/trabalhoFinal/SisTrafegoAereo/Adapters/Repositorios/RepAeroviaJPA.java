@@ -38,8 +38,7 @@ public class RepAeroviaJPA implements IRepAerovia {
 
     @Override
     public List<Integer> getAltitudesLivres(String nomeAerovia, Date data, Integer slotHora) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAltitudesLivres'");
+        return this.aeroviaCRUD.findAlitutudesLivres(nomeAerovia, data, slotHora);
     }
 
 }

@@ -22,6 +22,8 @@ public class Ocupacao {
     @ManyToOne
     private Aeronave aeronave;
 
+    public Ocupacao() {}
+
     public Ocupacao(Date data, Integer slotHoraInicio, Integer slotHoraFim, Aerovia aerovia, Aeronave aeronave) {
         this.data = data;
         this.slotHoraInicio = slotHoraInicio;

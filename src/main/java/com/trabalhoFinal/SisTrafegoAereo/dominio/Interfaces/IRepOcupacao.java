@@ -10,9 +10,9 @@ public interface IRepOcupacao {
 
     public Ocupacao cadastraOcupacao(Date data, Integer slotHoraInicio, Integer slotHoraFim, Aerovia aerovia, Aeronave aeronave);
 
-    public boolean isAeronaveOcupada(String prefixAeronave, Date data, Integer slotHoraInicio, Integer slotHoraFim);
+    public boolean isAeronaveOcupada(Aeronave aeronave, Date data, Integer slotHoraInicio, Integer slotHoraFim);
 
-    public boolean isAeroviaOcupada(String nomeAerovia, Date data, Integer slotHoraInicio, Integer slotHoraFim);
+    public boolean isAeroviaOcupada(Aerovia aerovia, Date data, Integer slotHoraInicio, Integer slotHoraFim);
 
     public boolean liberaOcupacao(Ocupacao ocupacao);
 

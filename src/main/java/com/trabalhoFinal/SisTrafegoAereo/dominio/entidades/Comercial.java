@@ -13,6 +13,8 @@ import jakarta.persistence.InheritanceType;
 public abstract class Comercial extends Aeronave {
     protected String nomeCompanhia;
 
+    public Comercial() {}
+
     public Comercial(String prefixo, double velocidade, double autonomia, String nomeCompanhia) {
         super(prefixo, velocidade, autonomia);
         this.nomeCompanhia = nomeCompanhia;

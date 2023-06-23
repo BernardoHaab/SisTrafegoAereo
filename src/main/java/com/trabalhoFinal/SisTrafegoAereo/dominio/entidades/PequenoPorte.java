@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 public class PequenoPorte extends Aeronave {
     private String nomeManutencao;
 
+    public PequenoPorte() {}
+
     public PequenoPorte(String prefixo, double velocidade, double autonomia, String nomeManutencao) {
         super(prefixo, velocidade, autonomia);
         this.nomeManutencao = nomeManutencao;

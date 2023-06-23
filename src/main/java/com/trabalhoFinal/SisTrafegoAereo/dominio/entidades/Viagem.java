@@ -16,6 +16,8 @@ public class Viagem {
     @ManyToOne
     private Ocupacao ocupacao;
 
+    public Viagem() {}
+
     public Viagem(Long idViagem, String nomeMotorista, Ocupacao ocupacao) {
         this.idViagem = idViagem;
         this.nomeMotorista = nomeMotorista;

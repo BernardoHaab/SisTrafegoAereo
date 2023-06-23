@@ -27,11 +27,11 @@ public class RepOcupacaoMem implements IRepOcupacao {
     }
 
     @Override
-    public boolean isAeronaveOcupada(String prefixAeronave, Date data, Integer slotHoraInicio, Integer slotHoraFim) {
+    public boolean isAeronaveOcupada(Aeronave aeronave, Date data, Integer slotHoraInicio, Integer slotHoraFim) {
         SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMdd");
 
         return this.ocupacoes.stream()
-        .filter((oc) -> oc.getAeronave().getPrefixo().equals(prefixAeronave))
+        .filter((oc) -> oc.getAeronave().getPrefixo().equals(aeronave.getPrefixo()))
         .filter((oc) -> fmt.format(oc.getData()).equals(fmt.format(data)))
         .filter((oc) -> slotHoraInicio >= oc.getSlotHoraInicio() && slotHoraInicio <= oc.getSlotHoraFim() || slotHoraFim >= oc.getSlotHoraInicio() && slotHoraFim <= oc.getSlotHoraFim())
         .findAny()
@@ -39,11 +39,11 @@ public class RepOcupacaoMem implements IRepOcupacao {
     }
 
     @Override
-    public boolean isAeroviaOcupada(String nomeAerovia, Date data, Integer slotHoraInicio, Integer slotHoraFim) {
+    public boolean isAeroviaOcupada(Aerovia aerovia, Date data, Integer slotHoraInicio, Integer slotHoraFim) {
         SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMdd");
 
         return this.ocupacoes.stream()
-        .filter((oc) -> oc.getAerovia().getNome().equals(nomeAerovia))
+        .filter((oc) -> oc.getAerovia().getNome().equals(aerovia.getNome()))
         .filter((oc) -> fmt.format(oc.getData()).equals(fmt.format(data)))
         .filter((oc) -> slotHoraInicio >= oc.getSlotHoraInicio() && slotHoraInicio <= oc.getSlotHoraFim() || slotHoraFim >= oc.getSlotHoraInicio() && slotHoraFim <= oc.getSlotHoraFim())
         .findAny()

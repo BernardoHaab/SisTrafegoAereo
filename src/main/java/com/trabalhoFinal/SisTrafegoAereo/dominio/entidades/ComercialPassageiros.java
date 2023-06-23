@@ -9,6 +9,8 @@ public class ComercialPassageiros extends Comercial {
     private int id;
     private int maxPassageiros;
 
+    public ComercialPassageiros() {}
+
     public ComercialPassageiros(String prefixo, double velocidade, double autonomia, String nomeCompanhia,
             int maxPassageiros) {
         super(prefixo, velocidade, autonomia, nomeCompanhia);

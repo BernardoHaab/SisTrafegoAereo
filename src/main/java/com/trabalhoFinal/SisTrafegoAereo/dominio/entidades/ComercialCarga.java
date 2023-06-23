@@ -9,6 +9,8 @@ public class ComercialCarga extends Comercial {
     private int id;
     private double cargaMax;
 
+    public ComercialCarga() {}
+
     public ComercialCarga(String prefixo, double velocidade, double autonomia, String nomeCompanhia, double cargaMax) {
         super(prefixo, velocidade, autonomia, nomeCompanhia);
         this.cargaMax = cargaMax;

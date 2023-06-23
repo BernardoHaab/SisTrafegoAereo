@@ -13,9 +13,13 @@ import com.trabalhoFinal.SisTrafegoAereo.Dominio.Interfaces.IRepOcupacao;
 @Service
 public class ServicoOcupacao {
     private IRepOcupacao repOcupacao;
+    private ServicoAeronave servicoAeronave;
+    private ServicoAerovia servicoAerovia;
 
-    public ServicoOcupacao(IRepOcupacao repOcupacao) {
+    public ServicoOcupacao(IRepOcupacao repOcupacao, ServicoAeronave servicoAeronave, ServicoAerovia servicoAerovia) {
         this.repOcupacao = repOcupacao;
+        this.servicoAeronave = servicoAeronave;
+        this.servicoAerovia = servicoAerovia;
     }
 
     public Ocupacao cadastraOcupacao(Date data, Integer slotHoraInicio, Integer slotHoraFim, Aerovia aerovia, Aeronave aeronave) {
@@ -23,7 +27,7 @@ public class ServicoOcupacao {
             throw new NotAcceptableStatusException("Slot de hora deve estar no intervalo 0-23");
         };
 
-        if (this.isAeroviaOcupada(aerovia.getNome(), data, slotHoraInicio, slotHoraFim)) {
+        if (this.isAeroviaOcupada(aerovia.getNome(), aerovia.getAltitude(), data, slotHoraInicio, slotHoraFim)) {
             throw new NotAcceptableStatusException("Aerovia Ocupada");
         }
 
@@ -34,12 +38,14 @@ public class ServicoOcupacao {
         return this.repOcupacao.cadastraOcupacao(data, slotHoraInicio, slotHoraFim, aerovia, aeronave);
     }
 
-    public boolean isAeroviaOcupada(String nomeAerovia, Date data, Integer slotHoraInicio, Integer slotHoraFim) {
-        return this.repOcupacao.isAeroviaOcupada(nomeAerovia, data, slotHoraInicio, slotHoraFim);
+    public boolean isAeroviaOcupada(String nomeAerovia, int altitude, Date data, Integer slotHoraInicio, Integer slotHoraFim) {
+        Aerovia aerovia = this.servicoAerovia.busca(nomeAerovia, altitude);
+        return this.repOcupacao.isAeroviaOcupada(aerovia, data, slotHoraInicio, slotHoraFim);
     }
 
     public boolean isAeronaveOcupada(String prefixAeronave, Date data, Integer slotHoraInicio, Integer slotHoraFim) {
-        return this.repOcupacao.isAeronaveOcupada(prefixAeronave, data, slotHoraInicio, slotHoraFim);
+        Aeronave aeronave = this.servicoAeronave.buscaPorPrefixo(prefixAeronave);
+        return this.repOcupacao.isAeronaveOcupada(aeronave, data, slotHoraInicio, slotHoraFim);
     }
 
     public boolean isSlotOcupacaoValido(Integer slotHoraInicio, Integer slotHoraFim) {

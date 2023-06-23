@@ -47,7 +47,7 @@ public class ValidaViagem_UC {
 
         if (!servicoAerovia.existeAerovia(viagemDTO.nomeAerovia(), viagemDTO.altitude())) {
             res.add("Aerovia desconhecida");
-        } else if (this.servicoOcupacao.isAeroviaOcupada(viagemDTO.nomeAerovia(), viagemDTO.data(), slotHoraInicio, slotHoraFim)) {
+        } else if (this.servicoOcupacao.isAeroviaOcupada(viagemDTO.nomeAerovia(), viagemDTO.altitude(), viagemDTO.data(), slotHoraInicio, slotHoraFim)) {
             res.add("Aerovia ocupada.");
         }
 

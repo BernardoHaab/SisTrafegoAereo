@@ -15,6 +15,8 @@ public abstract class Aeronave {
 	protected Double velocidade;
 	protected Double autonomia;
 
+    public Aeronave() {}
+
     public Aeronave(String prefixo, Double velocidade, Double autonomia) {
         this.prefixo = prefixo;
         this.velocidade = velocidade;
